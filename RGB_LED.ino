@@ -1,13 +1,34 @@
+#include <Adafruit_GFX.h>
+#include <Adafruit_ST7789.h>
+#include <SPI.h>
+
+#define TFT_CS     6
+#define TFT_RST    8
+#define TFT_DC     7
+#define TFT_BLK    5
+
+Adafruit_ST7789 tft = Adafruit_ST7789(TFT_CS, TFT_DC, TFT_RST);
+
 int redPIN = 9;
 int greenPIN = 10;
-int bluePIN = 11;
+int bluePIN = 3;
 
 void setup() {
 
   pinMode(redPIN, OUTPUT);
   pinMode(greenPIN, OUTPUT);
   pinMode(bluePIN, OUTPUT);
+
   Serial.begin(9600);
+
+  pinMode(TFT_BLK, OUTPUT);
+  analogWrite(TFT_BLK, 255);
+
+  tft.init(240, 240);
+  tft.setRotation(2);
+  tft.fillScreen(ST77XX_BLACK);
+
+
 }
 
 void loop() {
@@ -18,7 +39,9 @@ void loop() {
 
   int REDbrightness = REDpotentiometerValue / 4; 
   int GREENbrightness = GREENpotentiometerValue / 4; 
-  int BLUEbrightness = BLUEpotentiometerValue / 4; 
+  int BLUEbrightness = BLUEpotentiometerValue / 4;
+
+  
 
   Serial.print("\n");
   Serial.print("RED: " + String(REDbrightness) + " GREEN: " + String(GREENbrightness) + " BLUE: " + String(BLUEbrightness));
@@ -27,4 +50,21 @@ void loop() {
   analogWrite(greenPIN, 255 - GREENbrightness);
   analogWrite(bluePIN, 255 - BLUEbrightness);
 
+  tft.setCursor(0, 0);
+  tft.setTextColor(ST77XX_RED);
+  tft.setTextSize(7);
+  tft.print(String(REDbrightness));
+
+  tft.setCursor(0, 80);
+  tft.setTextColor(ST77XX_GREEN);
+  tft.setTextSize(7);
+  tft.print(String(GREENbrightness));
+
+  tft.setCursor(0, 160);
+  tft.setTextColor(ST77XX_BLUE);
+  tft.setTextSize(7);
+  tft.print(String(BLUEbrightness));
+
+  delay(80);
+  tft.fillRect(0, 0, 240, 240, ST77XX_BLACK);
 }
