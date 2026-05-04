@@ -41,10 +41,7 @@ void loop() {
   int GREENbrightness = GREENpotentiometerValue / 4; 
   int BLUEbrightness = BLUEpotentiometerValue / 4;
 
-  
-
-  Serial.print("\n");
-  Serial.print("RED: " + String(REDbrightness) + " GREEN: " + String(GREENbrightness) + " BLUE: " + String(BLUEbrightness));
+  Serial.println("R: " + String(REDbrightness) + " G: " + String(GREENbrightness) + " B: " + String(BLUEbrightness));
 
   analogWrite(redPIN, 255 - REDbrightness);
   analogWrite(greenPIN, 255 - GREENbrightness);
