@@ -27,8 +27,7 @@ void setup() {
   tft.init(240, 240);
   tft.setRotation(2);
   tft.fillScreen(ST77XX_BLACK);
-
-
+  tft.setTextSize(7);
 }
 
 void loop() {
@@ -49,17 +48,14 @@ void loop() {
 
   tft.setCursor(0, 0);
   tft.setTextColor(ST77XX_RED);
-  tft.setTextSize(7);
   tft.print(String(REDbrightness));
 
   tft.setCursor(0, 80);
   tft.setTextColor(ST77XX_GREEN);
-  tft.setTextSize(7);
   tft.print(String(GREENbrightness));
 
   tft.setCursor(0, 160);
   tft.setTextColor(ST77XX_BLUE);
-  tft.setTextSize(7);
   tft.print(String(BLUEbrightness));
 
   delay(80);
