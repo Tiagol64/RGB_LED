@@ -46,6 +46,8 @@ void loop() {
   analogWrite(greenPIN, 255 - GREENbrightness);
   analogWrite(bluePIN, 255 - BLUEbrightness);
 
+  tft.fillRect(0, 0, 240, 240, ST77XX_BLACK);
+
   tft.setCursor(0, 0);
   tft.setTextColor(ST77XX_RED);
   tft.print(String(REDbrightness));
@@ -59,5 +61,4 @@ void loop() {
   tft.print(String(BLUEbrightness));
 
   delay(80);
-  tft.fillRect(0, 0, 240, 240, ST77XX_BLACK);
 }
