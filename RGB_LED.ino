@@ -2,7 +2,7 @@
 #include <Adafruit_ST7789.h>
 #include <SPI.h>
 
-#define TFT_CS     6
+#define TFT_CS     4
 #define TFT_RST    8
 #define TFT_DC     7
 #define TFT_BLK    5
@@ -27,7 +27,7 @@ void setup() {
   tft.init(240, 240);
   tft.setRotation(2);
   tft.fillScreen(ST77XX_BLACK);
-
+  
 
 }
 
@@ -47,21 +47,17 @@ void loop() {
   analogWrite(greenPIN, 255 - GREENbrightness);
   analogWrite(bluePIN, 255 - BLUEbrightness);
 
-  tft.setCursor(0, 0);
-  tft.setTextColor(ST77XX_RED);
   tft.setTextSize(7);
+
+  tft.setCursor(0, 0);
+  tft.setTextColor(ST77XX_RED, ST77XX_BLACK);
   tft.print(String(REDbrightness));
 
   tft.setCursor(0, 80);
-  tft.setTextColor(ST77XX_GREEN);
-  tft.setTextSize(7);
+  tft.setTextColor(ST77XX_GREEN, ST77XX_BLACK);
   tft.print(String(GREENbrightness));
 
   tft.setCursor(0, 160);
-  tft.setTextColor(ST77XX_BLUE);
-  tft.setTextSize(7);
+  tft.setTextColor(ST77XX_BLUE, ST77XX_BLACK);
   tft.print(String(BLUEbrightness));
-
-  delay(80);
-  tft.fillRect(0, 0, 240, 240, ST77XX_BLACK);
 }

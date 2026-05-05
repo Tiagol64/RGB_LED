@@ -28,5 +28,5 @@
   * SDA: D11
   * RST: D8
   * DC: D7
-  * CS: D6
+  * CS: D4
   * BL: D5
