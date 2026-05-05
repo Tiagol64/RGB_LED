@@ -21,6 +21,11 @@
   * Output: A1
   * Vcc: VCC
 
+* Brightness Potentiometer:
+  * Gnd: GND
+  * Output: A4
+  * Vcc: VCC
+
 * TFT Screen:
   * Gnd: GND
   * Vcc: VCC
