@@ -41,10 +41,10 @@ void loop() {
   int GREENbrightness = GREENpotentiometerValue / 4; 
   int BLUEbrightness = BLUEpotentiometerValue / 4;
 
-  Serial.print("R: " + String(REDbrightness));
-  Serial.print(" G: " + String(GREENbrightness));
-  Serial.print(" B: " + String(BLUEbrightness));
-  Serial.print(" W: " + String((float)masterBrightness / 1023));
+  Serial.print("R: " + String(int(((float)REDbrightness / 255) * 100)));
+  Serial.print(" G: " + String(int(((float)GREENbrightness / 255) * 100)));
+  Serial.print(" B: " + String(int(((float)BLUEbrightness / 255) * 100)));
+  Serial.print(" W: " + String(int(((float)masterBrightness / 1023) * 100)));
   Serial.print("\n");
 
   analogWrite(redPIN, 255 - (REDbrightness * ((float)masterBrightness / 1023)));
@@ -55,18 +55,23 @@ void loop() {
 
   char buffer[4];
 
-  tft.setCursor(0, 0);
+  tft.setCursor(60, 0);
   tft.setTextColor(ST77XX_RED, ST77XX_BLACK);
-  sprintf(buffer, "%3d", REDbrightness);
+  sprintf(buffer, "%3d", int(((float)REDbrightness / 255) * 100));
   tft.print(buffer);
 
-  tft.setCursor(0, 80);
+  tft.setCursor(60, 60);
   tft.setTextColor(ST77XX_GREEN, ST77XX_BLACK);
-  sprintf(buffer, "%3d", GREENbrightness);
+  sprintf(buffer, "%3d", int(((float)GREENbrightness / 255) * 100));
   tft.print(buffer);
 
-  tft.setCursor(0, 160);
+  tft.setCursor(60, 120);
   tft.setTextColor(ST77XX_BLUE, ST77XX_BLACK);
-  sprintf(buffer, "%3d", BLUEbrightness);
+  sprintf(buffer, "%3d", int(((float)BLUEbrightness / 255) * 100));
+  tft.print(buffer);
+
+  tft.setCursor(60, 180);
+  tft.setTextColor(ST77XX_WHITE, ST77XX_BLACK);
+  sprintf(buffer, "%3d", int(((float)masterBrightness / 1023) * 100));
   tft.print(buffer);
 }
