@@ -26,6 +26,15 @@
   * Output: A4
   * Vcc: VCC
 
+* Light:
+  * Gnd: GND (10K Ω)
+  * Output: A0
+  * Vcc: VCC (Light Dependent Resistor)
+
+* Toggle button:
+  * GND
+  * D12
+
 * TFT Screen:
   * Gnd: GND
   * Vcc: VCC
